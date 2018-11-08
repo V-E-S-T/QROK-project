@@ -3,6 +3,8 @@ package com.QROKproject.dao;
 import com.QROKproject.model.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -16,9 +18,10 @@ public interface CRUDAuthorRepository extends JpaRepository<Author, Integer>{
 
     Author findById(int author_id);
 
-    @Modifying
     @Transactional
-    int deleteById(int author_id);
+    @Modifying
+    @Query("DELETE FROM Author a WHERE a.id=:id")
+    int deleteById(@Param("id") int id);
 
     @Override
     List<Author> findAll();

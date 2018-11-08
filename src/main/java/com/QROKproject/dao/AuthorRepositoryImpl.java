@@ -25,7 +25,7 @@ public class AuthorRepositoryImpl implements AuthorRepository{
     @Override
     public boolean delete(int author_id){
 
-        return authorRepository.deleteById(author_id) > 0;
+        return authorRepository.deleteById(author_id) != 0;
     }
 
     @Override
